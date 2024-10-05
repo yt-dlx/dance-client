@@ -1,11 +1,10 @@
-// app/gallery/page.tsx
 "use client";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Info } from "lucide-react";
-import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState, Suspense } from "react";
 
 const topicData = {
     Ballet: {
@@ -78,7 +77,7 @@ const topicData = {
     },
 };
 
-export default function GalleryPage() {
+function GalleryContent() {
     const searchParams = useSearchParams();
     const [data, setData] = useState<any>(null);
     const [showInfo, setShowInfo] = useState(false);
@@ -102,6 +101,7 @@ export default function GalleryPage() {
             </div>
         );
     }
+
     const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6 } } };
     const slideUp = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 
@@ -145,5 +145,13 @@ export default function GalleryPage() {
                 </motion.div>
             </div>
         </motion.main>
+    );
+}
+
+export default function GalleryPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <GalleryContent />
+        </Suspense>
     );
 }
