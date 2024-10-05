@@ -264,7 +264,7 @@ const Home: React.FC = () => {
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Our Classes
                 </motion.h2>
-                <motion.div className="grid grid-cols-2 md:grid-cols-2 gap-8" variants={staggerChildren} initial="hidden" animate="visible">
+                <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8" variants={staggerChildren} initial="hidden" animate="visible">
                     {classes.map((danceClass) => (
                         <motion.div key={danceClass.id} variants={fadeInUp} whileHover={{ y: -5 }} className="bg-white shadow-2xl shadow-black border-2 border-black rounded-xl overflow-hidden">
                             <div className="relative h-60">
