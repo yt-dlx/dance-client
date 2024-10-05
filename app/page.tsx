@@ -23,7 +23,7 @@ const Home: React.FC = () => {
         {
             id: 2,
             title: "HipHop",
-            image: "/HipHop.jpg",
+            image: "/hiphop.jpg",
             date: "June 20, 2023",
             excerpt: "Dive into the origins and evolution of Hip-Hop culture and dance...",
         },
