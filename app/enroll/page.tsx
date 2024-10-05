@@ -1,14 +1,14 @@
-// app/enroll/page.tsx
 "use client";
 import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function EnrollPage() {
+function EnrollContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [className, setClassName] = useState<string>("");
     const [formData, setFormData] = useState({ name: "", email: "", phone: "", danceClass: "" });
+
     useEffect(() => {
         const classParam = searchParams.get("class");
         if (classParam) {
@@ -114,5 +114,13 @@ export default function EnrollPage() {
                 </div>
             </div>
         </motion.div>
+    );
+}
+
+export default function EnrollPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <EnrollContent />
+        </Suspense>
     );
 }
