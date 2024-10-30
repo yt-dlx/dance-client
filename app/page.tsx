@@ -87,16 +87,13 @@ const Home: React.FC = () => {
             image: "/contemporary-class.jpg",
         },
     ];
-
     const nextSlide = (): void => setCurrentIndex((prevIndex) => (prevIndex + 1) % performances.length);
     const prevSlide = (): void => setCurrentIndex((prevIndex) => (prevIndex - 1 + performances.length) % performances.length);
-
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if (isAutoPlay) interval = setInterval(nextSlide, 5000);
         return () => clearInterval(interval);
     }, [isAutoPlay]);
-
     const menuVariants = { open: { opacity: 1, y: 0 }, closed: { opacity: 0, y: -20 } };
     const fadeInUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
     const staggerChildren = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
@@ -172,7 +169,6 @@ const Home: React.FC = () => {
                     )}
                 </AnimatePresence>
             </motion.nav>
-
             <motion.section className="relative h-screen flex items-center justify-center px-8 sm:px-12 bg-gradient-to-r from-[#F0F0F0] to-[#E0E0E0]" variants={fadeInUp}>
                 <div className="absolute inset-0 opacity-10">
                     <motion.div className="w-full h-full" initial={{ rotate: 0 }} animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
@@ -206,7 +202,6 @@ const Home: React.FC = () => {
                     </motion.div>
                 </div>
             </motion.section>
-
             <motion.section id="performances" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-white" variants={fadeInUp}>
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Captivating Performances
@@ -259,7 +254,6 @@ const Home: React.FC = () => {
                     </motion.button>
                 </div>
             </motion.section>
-
             <motion.section id="classes" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F0F0F0]" variants={fadeInUp}>
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Our Classes
@@ -294,7 +288,6 @@ const Home: React.FC = () => {
                     ))}
                 </motion.div>
             </motion.section>
-
             <motion.section id="blog" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-white" variants={fadeInUp}>
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Dance Insights
@@ -329,7 +322,6 @@ const Home: React.FC = () => {
                     ))}
                 </motion.div>
             </motion.section>
-
             <motion.footer className="bg-[#F0F0F0] text-yellow-950 py-8 px-4 sm:px-6 md:px-8 lg:px-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
                 <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
                     <motion.div className="w-full md:w-1/3 mb-6 md:mb-0" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
