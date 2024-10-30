@@ -12,41 +12,61 @@ const Home: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
+
     const blogPosts = [
         {
             id: 1,
+            url: "#",
             title: "HipHop",
             image: "/hiphop.jpg",
             date: "June 20, 2023",
-            excerpt: "Consectetur ex est magna ut sunt.",
+            excerpt: "Explore the evolution of hip-hop dance, its cultural roots, and how it’s influenced modern styles.",
         },
         {
             id: 2,
+            url: "#",
             title: "Contemporary",
             date: "June 20, 2023",
             image: "/contemporary.jpg",
-            excerpt: "Dolor sint voluptate aliquip laborum eu commodo est.",
+            excerpt: "Dive into contemporary dance, where fluidity meets storytelling to connect with audiences on a deeper level.",
+        },
+        {
+            id: 3,
+            url: "#",
+            title: "Freestyle",
+            image: "/freestyle.jpg",
+            date: "June 20, 2023",
+            excerpt: "Discover the art of freestyle dance, where dancers express creativity and individuality without limits.",
         },
     ];
+
     const performances = [
         {
-            id: 2,
-            title: "HipHop",
+            id: 1,
+            title: "Hip-Hop Highlights",
             image: "/hiphop.jpg",
         },
         {
-            id: 4,
-            title: "Contemporary",
+            id: 2,
+            title: "Contemporary Fusion",
             image: "/contemporary.jpg",
         },
+        {
+            id: 3,
+            title: "Freestyle Expressions",
+            image: "/freestyle.jpg",
+        },
     ];
+
     const nextSlide = (): void => setCurrentIndex((prevIndex) => (prevIndex + 1) % performances.length);
     const prevSlide = (): void => setCurrentIndex((prevIndex) => (prevIndex - 1 + performances.length) % performances.length);
+
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if (isAutoPlay) interval = setInterval(nextSlide, 5000);
         return () => clearInterval(interval);
     }, [isAutoPlay]);
+
     const menuVariants = { open: { opacity: 1, y: 0 }, closed: { opacity: 0, y: -20 } };
     const fadeInUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
     const staggerChildren = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
@@ -54,7 +74,7 @@ const Home: React.FC = () => {
     return (
         <motion.main initial="initial" animate="animate" className="min-h-screen bg-gradient-to-b from-[#F0F0F0] to-[#E0E0E0] text-yellow-950 overflow-x-hidden">
             <motion.nav
-                className="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-xl text-yellow-950 shadow-2xl"
+                className="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-xl text-yellow-950 shadow"
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -142,7 +162,7 @@ const Home: React.FC = () => {
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             <Link
                                 href="#performances"
-                                className="inline-flex items-center bg-green-700 text-white py-4 px-10 rounded-xl text-2xl font-bold hover:bg-[#ff8c00] transition-all duration-300 shadow-2xl group"
+                                className="inline-flex items-center bg-green-700 text-white py-4 px-10 rounded-xl text-2xl font-bold hover:bg-[#ff8c00] transition-all duration-300 shadow group"
                             >
                                 Start Your Journey
                                 <motion.div className="ml-2" initial={{ x: 0 }} whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
@@ -157,7 +177,7 @@ const Home: React.FC = () => {
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Captivating Performances
                 </motion.h2>
-                <div className="relative w-full h-[80vh] overflow-hidden group shadow-2xl rounded-xl">
+                <div className="relative w-full h-[80vh] overflow-hidden group shadow rounded-xl">
                     <AnimatePresence initial={false}>
                         <motion.div key={currentIndex} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
                             <Image src={performances[currentIndex].image} alt={performances[currentIndex].title} fill className="object-cover" />
@@ -211,7 +231,7 @@ const Home: React.FC = () => {
                 </motion.h2>
                 <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" variants={staggerChildren} initial="hidden" animate="visible">
                     {blogPosts.map((post) => (
-                        <motion.article key={post.id} variants={fadeInUp} whileHover={{ y: -5 }} className="bg-white shadow-2xl shadow-black border-2 border-black rounded-xl overflow-hidden">
+                        <motion.article key={post.id} variants={fadeInUp} whileHover={{ y: -5 }} className="bg-white shadow shadow-black border-2 border-black rounded-xl overflow-hidden">
                             <div className="relative w-full h-80">
                                 <Image src={post.image} alt={post.title} fill className="object-cover" />
                                 <motion.div
@@ -227,10 +247,7 @@ const Home: React.FC = () => {
                                 <h3 className="text-xl font-bold mb-2 text-yellow-950">{post.title}</h3>
                                 <p className="text-gray-600 mb-4 text-sm">{post.excerpt}</p>
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Link
-                                        href={`/gallery?name=${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, "-"))}`}
-                                        className="inline-block bg-green-700 text-white py-2 px-4 rounded-xl text-sm font-semibold hover:bg-[#FF8C00] transition-colors"
-                                    >
+                                    <Link href={`${post.url}`} className="inline-block bg-green-700 text-white py-2 px-4 rounded-xl text-sm font-semibold hover:bg-[#FF8C00] transition-colors">
                                         Check Out Gallery
                                     </Link>
                                 </motion.div>
