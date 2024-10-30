@@ -15,76 +15,29 @@ const Home: React.FC = () => {
     const blogPosts = [
         {
             id: 1,
-            title: "Ballet",
-            image: "/ballet.jpg",
-            date: "May 15, 2023",
-            excerpt: "Explore the elegance, discipline, and history behind ballet...",
-        },
-        {
-            id: 2,
             title: "HipHop",
             image: "/hiphop.jpg",
             date: "June 20, 2023",
-            excerpt: "Dive into the origins and evolution of Hip-Hop culture and dance...",
-        },
-        {
-            id: 3,
-            title: "Salsa",
-            image: "/salsa.jpg",
-            date: "July 10, 2023",
-            excerpt: "Learn the basics of Salsa and take your first steps toward mastering this vibrant dance style...",
-        },
-    ];
-    const classes = [
-        {
-            id: 1,
-            title: "Ballet",
-            level: "Beginner",
-            image: "/ballet-class.jpg",
-            description: "Learn the fundamentals of Ballet and develop grace and poise.",
+            excerpt: "Consectetur ex est magna ut sunt.",
         },
         {
             id: 2,
-            title: "HipHop",
-            level: "Intermediate",
-            image: "/hiphop-class.jpg",
-            description: "Master the energetic and dynamic moves of Hip-Hop dance.",
-        },
-        {
-            id: 3,
-            title: "Salsa",
-            level: "All Levels",
-            image: "/salsa-class.jpg",
-            description: "Immerse yourself in the vibrant rhythms and steps of Salsa.",
-        },
-        {
-            id: 4,
-            level: "Advanced",
             title: "Contemporary",
-            image: "/contemporary-class.jpg",
-            description: "Express yourself through the fluid and versatile styles of Contemporary dance.",
+            date: "June 20, 2023",
+            image: "/contemporary.jpg",
+            excerpt: "Dolor sint voluptate aliquip laborum eu commodo est.",
         },
     ];
     const performances = [
         {
-            id: 1,
-            title: "Ballet",
-            image: "/ballet-class.jpg",
-        },
-        {
             id: 2,
             title: "HipHop",
-            image: "/hiphop-class.jpg",
-        },
-        {
-            id: 3,
-            title: "Salsa",
-            image: "/salsa-class.jpg",
+            image: "/hiphop.jpg",
         },
         {
             id: 4,
             title: "Contemporary",
-            image: "/contemporary-class.jpg",
+            image: "/contemporary.jpg",
         },
     ];
     const nextSlide = (): void => setCurrentIndex((prevIndex) => (prevIndex + 1) % performances.length);
@@ -117,7 +70,6 @@ const Home: React.FC = () => {
                             <motion.div className="ml-10 flex items-baseline space-x-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, staggerChildren: 0.1 }}>
                                 {[
                                     { label: "Home", icon: <MdHome />, href: "#home" },
-                                    { label: "Classes", icon: <MdClass />, href: "#classes" },
                                     { label: "Contact", icon: <MdContacts />, href: "#contact" },
                                     { label: "Performances", icon: <FaPlay />, href: "#performances" },
                                 ].map(({ label, icon, href }) => (
@@ -149,7 +101,6 @@ const Home: React.FC = () => {
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                 {[
                                     { label: "Home", icon: <MdHome />, href: "#home" },
-                                    { label: "Classes", icon: <MdClass />, href: "#classes" },
                                     { label: "Contact", icon: <MdContacts />, href: "#contact" },
                                     { label: "Performances", icon: <FaPlay />, href: "#performances" },
                                 ].map(({ label, icon, href }) => (
@@ -254,40 +205,6 @@ const Home: React.FC = () => {
                     </motion.button>
                 </div>
             </motion.section>
-            <motion.section id="classes" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F0F0F0]" variants={fadeInUp}>
-                <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
-                    Our Classes
-                </motion.h2>
-                <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8" variants={staggerChildren} initial="hidden" animate="visible">
-                    {classes.map((danceClass) => (
-                        <motion.div key={danceClass.id} variants={fadeInUp} whileHover={{ y: -5 }} className="bg-white shadow-2xl shadow-black border-2 border-black rounded-xl overflow-hidden">
-                            <div className="relative h-60">
-                                <Image src={danceClass.image} alt={danceClass.title} fill className="object-cover" />
-                                <motion.div
-                                    className="absolute top-0 right-0 bg-yellow-500 text-yellow-950 px-3 py-1 m-4 rounded-xl text-sm font-semibold"
-                                    animate={{ opacity: 1, x: 0 }}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    transition={{ delay: 0.2 }}
-                                >
-                                    {danceClass.level}
-                                </motion.div>
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2 text-yellow-950">{danceClass.title}</h3>
-                                <p className="text-gray-600 mb-4 text-sm">{danceClass.description}</p>
-                                <Link
-                                    href={`/enroll?class=${encodeURIComponent(danceClass.title)}`}
-                                    className="bg-green-700 text-white py-2 px-4 rounded-xl text-sm font-semibold hover:bg-[#FF8C00] transition-colors"
-                                >
-                                    <motion.span whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                        Enroll Now
-                                    </motion.span>
-                                </Link>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </motion.section>
             <motion.section id="blog" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-white" variants={fadeInUp}>
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Dance Insights
@@ -331,7 +248,7 @@ const Home: React.FC = () => {
                     <motion.div className="w-full md:w-1/3 mb-6 md:mb-0" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
                         <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
                         <ul>
-                            {["Home", "Classes", "Performances", "Blog"].map((label) => (
+                            {["Home", "Performances", "Blog"].map((label) => (
                                 <motion.li whileHover={{ x: 5 }} key={label}>
                                     <a href="#" className="hover:text-green-700">
                                         {label}
