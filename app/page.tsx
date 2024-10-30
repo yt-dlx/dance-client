@@ -3,8 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { MdHome, MdContacts } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
-import { MdHome, MdContacts, MdClass } from "react-icons/md";
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { FaPlay, FaPause, FaArrowRight, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
                     <div className="flex items-center justify-between h-16">
                         <motion.div className="flex items-center" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
                             <Link href="#home" className="text-2xl font-bold">
-                                Indian Dance Studio
+                                Freedom Dance Studio
                             </Link>
                         </motion.div>
                         <div className="hidden md:block">
@@ -242,8 +242,8 @@ const Home: React.FC = () => {
             <motion.footer className="bg-[#F0F0F0] text-yellow-950 py-8 px-4 sm:px-6 md:px-8 lg:px-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
                 <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
                     <motion.div className="w-full md:w-1/3 mb-6 md:mb-0" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
-                        <h3 className="text-2xl font-bold mb-2">Indian Dance Studio</h3>
-                        <p>Inspiring passion through the art of Indian dance</p>
+                        <h3 className="text-2xl font-bold mb-2">Freedom Dance Studio</h3>
+                        <p>Inspiring passion through the art of dance</p>
                     </motion.div>
                     <motion.div className="w-full md:w-1/3 mb-6 md:mb-0" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
                         <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
@@ -266,12 +266,12 @@ const Home: React.FC = () => {
                             <FaPhone className="inline-block mr-2" /> Phone: (91) 123-456-7890
                         </p>
                         <p>
-                            <FaEnvelope className="inline-block mr-2" /> Email: info@indiandancestudio.com
+                            <FaEnvelope className="inline-block mr-2" /> Email: info@FreedomDanceStudio.com
                         </p>
                     </motion.div>
                 </div>
                 <motion.div className="mt-8 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
-                    <p>&copy; 2023 Indian Dance Studio. All rights reserved.</p>
+                    <p>&copy; 2023 Freedom Dance Studio All rights reserved.</p>
                 </motion.div>
             </motion.footer>
         </motion.main>
