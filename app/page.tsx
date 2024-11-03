@@ -1,18 +1,18 @@
 // app/page.tsx
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { MdHome, MdContacts } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
-import { FaPlay, FaPause, FaArrowRight, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPlay, FaPause, FaArrowRight, FaPhone, FaEnvelope, FaMapMarkerAlt, FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
 
 const Home: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-
     const blogPosts = [
         {
             id: 1,
@@ -20,7 +20,10 @@ const Home: React.FC = () => {
             title: "HipHop",
             image: "/hiphop.jpg",
             date: "June 20, 2023",
+            youtubeLink: "https://www.youtube.com/@TheFreedomDance",
+            facebookLink: "https://www.facebook.com/profile.php?id=61567729653619&mibextid=ZbWKwL",
             excerpt: "Explore the evolution of hip-hop dance, its cultural roots, and how it’s influenced modern styles.",
+            instagramLink: "https://www.instagram.com/the_freedom_dance/profilecard/?igsh=MTRndjBndnNhZGQycA==",
         },
         {
             id: 2,
@@ -28,6 +31,9 @@ const Home: React.FC = () => {
             title: "Contemporary",
             date: "June 20, 2023",
             image: "/contemporary.jpg",
+            youtubeLink: "https://www.youtube.com/@TheFreedomDance",
+            facebookLink: "https://www.facebook.com/profile.php?id=61567729653619&mibextid=ZbWKwL",
+            instagramLink: "https://www.instagram.com/the_freedom_dance/profilecard/?igsh=MTRndjBndnNhZGQycA==",
             excerpt: "Dive into contemporary dance, where fluidity meets storytelling to connect with audiences on a deeper level.",
         },
         {
@@ -36,7 +42,10 @@ const Home: React.FC = () => {
             title: "Freestyle",
             image: "/freestyle.jpg",
             date: "June 20, 2023",
+            youtubeLink: "https://www.youtube.com/@TheFreedomDance",
+            facebookLink: "https://www.facebook.com/profile.php?id=61567729653619&mibextid=ZbWKwL",
             excerpt: "Discover the art of freestyle dance, where dancers express creativity and individuality without limits.",
+            instagramLink: "https://www.instagram.com/the_freedom_dance/profilecard/?igsh=MTRndjBndnNhZGQycA==",
         },
     ];
 
@@ -67,12 +76,22 @@ const Home: React.FC = () => {
         return () => clearInterval(interval);
     }, [isAutoPlay]);
 
-    const menuVariants = { open: { opacity: 1, y: 0 }, closed: { opacity: 0, y: -20 } };
-    const fadeInUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
-    const staggerChildren = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
+    const menuVariants = {
+        open: { opacity: 1, y: 0 },
+        closed: { opacity: 0, y: -20 },
+    };
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    };
+    const staggerChildren = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    };
 
     return (
         <motion.main initial="initial" animate="animate" className="min-h-screen bg-gradient-to-b from-[#F0F0F0] to-[#E0E0E0] text-yellow-950 overflow-x-hidden">
+            {/* Navigation Bar */}
             <motion.nav
                 className="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-xl text-yellow-950 shadow"
                 initial={{ y: -100 }}
@@ -140,6 +159,8 @@ const Home: React.FC = () => {
                     )}
                 </AnimatePresence>
             </motion.nav>
+
+            {/* Hero Section */}
             <motion.section className="relative h-screen flex items-center justify-center px-8 sm:px-12 bg-gradient-to-r from-[#F0F0F0] to-[#E0E0E0]" variants={fadeInUp}>
                 <div className="absolute inset-0 opacity-10">
                     <motion.div className="w-full h-full" initial={{ rotate: 0 }} animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
@@ -158,6 +179,22 @@ const Home: React.FC = () => {
                     <motion.p className="text-xl sm:text-2xl md:text-3xl mb-12 text-yellow-950" variants={fadeInUp}>
                         Ready to unleash your inner dancer? Let's create magic on the dance floor together!
                     </motion.p>
+
+                    {/* Enlarged Circular Image (hiphop.jpg) */}
+                    <motion.div className="flex justify-center mb-6" initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, duration: 0.6 }}>
+                        <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg">
+                            <Image
+                                src="/hiphop.jpg" // Ensure this path is correct and the image exists in the public folder
+                                alt="HipHop Dance"
+                                width={224} // Adjusted width for larger image
+                                height={224} // Adjusted height for larger image
+                                className="object-cover w-full h-full"
+                                priority
+                            />
+                        </div>
+                    </motion.div>
+
+                    {/* Start Your Journey Button */}
                     <motion.div variants={fadeInUp}>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             <Link
@@ -173,6 +210,8 @@ const Home: React.FC = () => {
                     </motion.div>
                 </div>
             </motion.section>
+
+            {/* Performances Section */}
             <motion.section id="performances" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-white" variants={fadeInUp}>
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Captivating Performances
@@ -180,7 +219,7 @@ const Home: React.FC = () => {
                 <div className="relative w-full h-[80vh] overflow-hidden group shadow rounded-xl">
                     <AnimatePresence initial={false}>
                         <motion.div key={currentIndex} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-                            <Image src={performances[currentIndex].image} alt={performances[currentIndex].title} fill className="object-cover " unoptimized />
+                            <Image src={performances[currentIndex].image} alt={performances[currentIndex].title} fill className="object-cover" unoptimized />
                             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                 <motion.h2 className="text-4xl sm:text-6xl font-bold text-white text-center" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
                                     {performances[currentIndex].title}
@@ -225,6 +264,8 @@ const Home: React.FC = () => {
                     </motion.button>
                 </div>
             </motion.section>
+
+            {/* Blog Section */}
             <motion.section id="blog" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-white" variants={fadeInUp}>
                 <motion.h2 className="text-4xl sm:text-5xl md:text-6xl text-center mb-12 text-yellow-900 font-bold" variants={fadeInUp}>
                     Dance Insights
@@ -246,16 +287,49 @@ const Home: React.FC = () => {
                             <div className="p-6">
                                 <h3 className="text-xl font-bold mb-2 text-yellow-950">{post.title}</h3>
                                 <p className="text-gray-600 mb-4 text-sm">{post.excerpt}</p>
-                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Link href={`${post.url}`} className="inline-block bg-green-700 text-white py-2 px-4 rounded-xl text-sm font-semibold hover:bg-[#FF8C00] transition-colors">
-                                        Check Out Gallery
-                                    </Link>
+                                {/* Social Media Buttons */}
+                                <motion.div className="flex space-x-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+                                    <motion.a
+                                        href={post.youtubeLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition-colors"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        aria-label="YouTube"
+                                    >
+                                        <FaYoutube size={20} />
+                                    </motion.a>
+                                    <motion.a
+                                        href={post.instagramLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center bg-pink-600 text-white p-2 rounded-full hover:bg-pink-700 transition-colors"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        aria-label="Instagram"
+                                    >
+                                        <FaInstagram size={20} />
+                                    </motion.a>
+                                    <motion.a
+                                        href={post.facebookLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-colors"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        aria-label="Facebook"
+                                    >
+                                        <FaFacebook size={20} />
+                                    </motion.a>
                                 </motion.div>
                             </div>
                         </motion.article>
                     ))}
                 </motion.div>
             </motion.section>
+
+            {/* Footer */}
             <motion.footer className="bg-[#F0F0F0] text-yellow-950 py-8 px-4 sm:px-6 md:px-8 lg:px-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
                 <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
                     <motion.div className="w-full md:w-1/3 mb-6 md:mb-0" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
