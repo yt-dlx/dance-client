@@ -180,7 +180,7 @@ const Home: React.FC = () => {
                 <div className="relative w-full h-[80vh] overflow-hidden group shadow rounded-xl">
                     <AnimatePresence initial={false}>
                         <motion.div key={currentIndex} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-                            <Image src={performances[currentIndex].image} alt={performances[currentIndex].title} fill className="object-cover" />
+                            <Image src={performances[currentIndex].image} alt={performances[currentIndex].title} fill className="object-cover " unoptimized />
                             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                 <motion.h2 className="text-4xl sm:text-6xl font-bold text-white text-center" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
                                     {performances[currentIndex].title}
