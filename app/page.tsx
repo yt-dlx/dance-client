@@ -159,7 +159,6 @@ const Home: React.FC = () => {
                     )}
                 </AnimatePresence>
             </motion.nav>
-
             {/* Hero Section */}
             <motion.section className="relative h-screen flex items-center justify-center px-8 sm:px-12 bg-gradient-to-r from-[#F0F0F0] to-[#E0E0E0]" variants={fadeInUp}>
                 <div className="absolute inset-0 opacity-10">
@@ -179,21 +178,12 @@ const Home: React.FC = () => {
                     <motion.p className="text-xl sm:text-2xl md:text-3xl mb-12 text-yellow-950" variants={fadeInUp}>
                         Ready to unleash your inner dancer? Let's create magic on the dance floor together!
                     </motion.p>
-
-                    {/* Enlarged Circular Image (hiphop.jpg) */}
+                    {/* Enlarged Circular Image*/}
                     <motion.div className="flex justify-center mb-6" initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, duration: 0.6 }}>
                         <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg">
-                            <Image
-                                src="/hiphop.jpg" // Ensure this path is correct and the image exists in the public folder
-                                alt="HipHop Dance"
-                                width={224} // Adjusted width for larger image
-                                height={224} // Adjusted height for larger image
-                                className="object-cover w-full h-full"
-                                priority
-                            />
+                            <Image width={224} height={224} src="/logo.png" alt="HipHop Dance" className="object-cover w-full h-full" priority />
                         </div>
                     </motion.div>
-
                     {/* Start Your Journey Button */}
                     <motion.div variants={fadeInUp}>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -351,10 +341,10 @@ const Home: React.FC = () => {
                     <motion.div className="w-full md:w-1/3" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
                         <h4 className="text-xl font-semibold mb-2">Contact Us</h4>
                         <p>
-                            <FaMapMarkerAlt className="inline-block mr-2" /> 123 Bhangra Avenue, Mumbai
+                            <FaMapMarkerAlt className="inline-block mr-2" /> Vidhaniketan Prathamik Vidyalaya Dhekiyajuri Bengali Gaon, Sripuriya Tinsukia, Assam, 786145
                         </p>
                         <p>
-                            <FaPhone className="inline-block mr-2" /> Phone: (91) 123-456-7890
+                            <FaPhone className="inline-block mr-2" /> Phone: +918471953849 , +919678829857
                         </p>
                         <p>
                             <FaEnvelope className="inline-block mr-2" /> Email: info@FreedomDanceStudio.com
